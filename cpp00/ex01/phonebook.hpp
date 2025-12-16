@@ -11,6 +11,7 @@ class PhoneBook
 private:
 	int		count;
 	Contact arr_contact[8];
+	int		oldest_index;
 public:
 	PhoneBook();
 	void add_contact(Contact contact);

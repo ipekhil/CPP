@@ -1,8 +1,9 @@
 #include "phonebook.hpp"
-
+#include <cstdlib>
 PhoneBook::PhoneBook()
 {
 	count = 0;
+	oldest_index = 0;
 }
 
 void PhoneBook::add_contact(Contact contact)
@@ -14,12 +15,8 @@ void PhoneBook::add_contact(Contact contact)
 	}
 	else
 	{
-		int i;
-		for (i = 0; i < 7; i++)
-		{
-			arr_contact[i + 1] = arr_contact[i];
-		}
-		arr_contact[7 - i] = contact;
+		arr_contact[oldest_index] = contact;
+		oldest_index = (oldest_index + 1) % 8;
 	}
 }
 
@@ -52,24 +49,30 @@ void PhoneBook::search_contact()
 		std::cout << "|" << std::endl;
 	}
 	std::cout << " -------------------------------------------" << std::endl;
-	while (true)
+
+	if (count != 0)
 	{
-		std::cout << "Select an index : ";
-		std::cin >> index;
-		if (std::cin.fail() || index < 1 || index > count)
+		while (true)
 		{
-			std::cin.clear();
-			std::cin.ignore(1000, '\n');
-			std::cout << "Invalid index!" << std::endl;
-			continue;
+			std::cout << "Select an index: ";
+			getline(std::cin, s_index);
+			if (s_index.empty())
+				continue;
+			index = std::atoi(s_index.c_str());
+			if (std::cin.fail() || index < 1 || index > count)
+			{
+				std::cin.clear();
+				std::cout << "Invalid index!" << std::endl;
+				continue;
+			}
+			break;
 		}
-		break;
+		std::cout << "First Name" << " : " << arr_contact[index - 1].get_first_name() << std::endl;
+		std::cout << "Last Name" << " : " << arr_contact[index - 1].get_last_name() << std::endl;
+		std::cout << "Nickname" << " : " << arr_contact[index - 1].get_nickname() << std::endl;
+		std::cout << "Phone Number" << " : " << arr_contact[index - 1].get_phone_number() << std::endl;
+		std::cout << "Darkest Secret" << " : " << arr_contact[index - 1].get_darkest_secret() << std::endl;
+
 	}
-	std::cin.ignore(1000, '\n');
-	std::cout << "First Name" << " : " << arr_contact[index - 1].get_first_name() << std::endl;
-	std::cout << "Last Name" << " : " << arr_contact[index - 1].get_last_name() << std::endl;
-	std::cout << "Nickname" << " : " << arr_contact[index - 1].get_nickname() << std::endl;
-	std::cout << "Phone Number" << " : " << arr_contact[index - 1].get_phone_number() << std::endl;
-	std::cout << "Darkest Secret" << " : " << arr_contact[index - 1].get_darkest_secret() << std::endl;
 
 }
