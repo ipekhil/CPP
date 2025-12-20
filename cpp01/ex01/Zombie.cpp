@@ -2,7 +2,7 @@
 
 Zombie::Zombie()
 {
-	std::cout << "boş cons" << std::endl;
+	std::cout << "Constructure çalıştı" << std::endl;
 }
 
 Zombie::~Zombie()

@@ -2,18 +2,6 @@
 #include <string>
 #include "phonebook.hpp"
 
-int is_numeric(std::string phone_number)
-{
-	int i = 0;
-	while (phone_number[i])
-	{
-		if (!(phone_number[i] >= 49 && phone_number[i] <= 57))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 Contact get_input()
 {
 	Contact		newcontact;
@@ -26,7 +14,7 @@ Contact get_input()
 	{
 		std::cout << "Enter First Name: ";
 		getline(std::cin, first_name);
-		if (first_name.empty())
+		if (first_name == "")
 		{
 			std::cout << "Field cannot be empty!" << std::endl;
 			continue;
@@ -38,7 +26,7 @@ Contact get_input()
 	{
 		std::cout << "Enter Last Name: ";
 		getline(std::cin, last_name);
-		if (last_name.empty())
+		if (last_name == "")
 		{
 			std::cout << "Field cannot be empty!" << std::endl;
 			continue;
@@ -50,7 +38,7 @@ Contact get_input()
 	{
 		std::cout << "Enter Nickname: ";
 		getline(std::cin, nickname);
-		if (nickname.empty())
+		if (nickname == "")
 		{
 			std::cout << "Field cannot be empty!" << std::endl;
 			continue;
@@ -62,14 +50,9 @@ Contact get_input()
 	{	
 		std::cout << "Enter Phone Number:";
 		getline(std::cin, phone_number);
-		if (phone_number.empty())
+		if (phone_number == "")
 		{
 			std::cout << "Field cannot be empty!" << std::endl;
-			continue;
-		}
-		if (!is_numeric(phone_number))
-		{
-			std::cout << "Value must be numeric!" << std::endl;
 			continue;
 		}
 		newcontact.set_phone_number(phone_number);
@@ -79,7 +62,7 @@ Contact get_input()
 	{
 		std::cout << "Enter Darkest Secret:";
 		getline(std::cin, darkest_secret);
-		if (darkest_secret.empty())
+		if (darkest_secret == "")
 		{
 			std::cout << "Field cannot be empty!" << std::endl;
 			continue;
