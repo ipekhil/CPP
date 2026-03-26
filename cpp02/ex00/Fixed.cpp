@@ -1,6 +1,5 @@
 #include "Fixed.hpp"
 #include <iostream>
-#include <string>
 
 Fixed::Fixed()
 {
@@ -11,7 +10,7 @@ Fixed::Fixed()
 Fixed::Fixed(const Fixed& src)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	this->setRawBits(src.getRawBits());
+	*this=src;
 }
 
 Fixed& Fixed::operator = (const Fixed& src)

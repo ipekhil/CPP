@@ -1,5 +1,4 @@
 #include "Fixed.hpp"
-#include <cmath>
 
 Fixed::Fixed()
 {
@@ -40,7 +39,7 @@ Fixed::~Fixed()
 
 float Fixed::toFloat( void ) const
 {
-	return (float)(fixedValue / ((1 << fractionalValue)));
+	return (float)fixedValue / ((1 << fractionalValue));
 }
 
 int Fixed::toInt( void ) const
