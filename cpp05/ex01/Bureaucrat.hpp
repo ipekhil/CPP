@@ -5,6 +5,8 @@
 #include <string>
 #include <exception>
 
+class Form; //forward declaration
+
 class Bureaucrat {
 private:
   const std::string name;
@@ -44,6 +46,8 @@ public:
 			return "Grade is too low!";
 		}
   };
+
+  void signForm(Form &f);
 };
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &b);
